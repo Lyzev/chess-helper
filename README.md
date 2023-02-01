@@ -12,6 +12,14 @@
     <img src="https://img.shields.io/github/contributors/Lyzev/chess-helper" alt="GitHub contributors"/>
 </div>
 
+<hr>
+
+<p align="center">
+    <img height="500px" src="chess-helper-preview.png" alt="Preview of chess helper">
+</p>
+
+<hr>
+
 ## Disclaimer
 Please note, this repository is for educational and proof of concept purposes only. The information and code contained within it should not be used for any illegal or unethical activities. The contributors to this repository are not liable for any actions taken or damages caused by the use of the information or code provided here. It is the responsibility of the user to ensure compliance with all applicable laws and regulations, and to obtain any necessary permissions before using the code or information.
 
