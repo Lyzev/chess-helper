@@ -1,6 +1,6 @@
 <h1 align="center">Chess Helper</h1>
 
-<p align="center">A utility script for [chess](https://chess.com). (Tampermonkey Script / Browser Extension)</p>
+<p align="center">A utility script for <a href="https://chess.com">chess</a>. (Tampermonkey Script / Browser Extension)</p>
 
 <div align="center">
     <a href="https://discord.gg/5UmsQP4MFH"><img src="https://img.shields.io/discord/610120595765723137?logo=discord" alt="Discord"/></a>
