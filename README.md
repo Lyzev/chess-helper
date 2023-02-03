@@ -3,7 +3,7 @@
 <p align="center">A utility script for [chess](https://chess.com). (Tampermonkey Script / Browser Extension)</p>
 
 <div align="center">
-    <a href="https://discord.gg/5UmsQP4MFH"><img src="https://img.shields.io/discord/610120595765723137?logo=discord" alt="Discord"/></a>
+    <a href="https://discord.gg/Wfc3U8Dgn7"><img src="https://img.shields.io/discord/610120595765723137?logo=discord" alt="Discord"/></a>
     <br><br>
     <img src="https://img.shields.io/github/last-commit/Lyzev/chess-helper" alt="GitHub last commit"/>
     <img src="https://img.shields.io/github/commit-activity/w/Lyzev/chess-helper" alt="GitHub commit activity"/>
