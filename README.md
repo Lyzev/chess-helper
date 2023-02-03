@@ -1,6 +1,6 @@
 <h1 align="center">Chess Helper</h1>
 
-<p align="center">A utility script for [chess](https://chess.com). (Tampermonkey Script / Browser Extension)</p>
+<p align="center">A utility script for <a href="https://chess.com">chess</a>. (Tampermonkey Script / Browser Extension)</p>
 
 <div align="center">
     <a href="https://discord.gg/Wfc3U8Dgn7"><img src="https://img.shields.io/discord/610120595765723137?logo=discord" alt="Discord"/></a>
@@ -11,6 +11,14 @@
     <img src="https://img.shields.io/github/languages/code-size/Lyzev/chess-helper" alt="GitHub code size in bytes"/>
     <img src="https://img.shields.io/github/contributors/Lyzev/chess-helper" alt="GitHub contributors"/>
 </div>
+
+<hr>
+
+<p align="center">
+    <img height="500px" src="chess-helper-preview.png" alt="Preview of chess helper">
+</p>
+
+<hr>
 
 ## Disclaimer
 Please note, this repository is for educational and proof of concept purposes only. The information and code contained within it should not be used for any illegal or unethical activities. The contributors to this repository are not liable for any actions taken or damages caused by the use of the information or code provided here. It is the responsibility of the user to ensure compliance with all applicable laws and regulations, and to obtain any necessary permissions before using the code or information.
