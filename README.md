@@ -1,3 +1,7 @@
+<p align="center">
+    <img height="128" src="assets/img/icon.png" alt="Icon of Chess Helper">
+</p>
+
 <h1 align="center">Chess Helper</h1>
 
 <p align="center">A utility script for <a href="https://chess.com">chess</a>. (Tampermonkey Script / Browser Extension)</p>
@@ -11,14 +15,6 @@
     <img src="https://img.shields.io/github/languages/code-size/Lyzev/chess-helper" alt="GitHub code size in bytes"/>
     <img src="https://img.shields.io/github/contributors/Lyzev/chess-helper" alt="GitHub contributors"/>
 </div>
-
-<hr>
-
-<p align="center">
-    <img height="500px" src="chess-helper-preview.png" alt="Preview of chess helper">
-</p>
-
-<hr>
 
 ## Disclaimer
 Please note, this repository is for educational and proof of concept purposes only. The information and code contained within it should not be used for any illegal or unethical activities. The contributors to this repository are not liable for any actions taken or damages caused by the use of the information or code provided here. It is the responsibility of the user to ensure compliance with all applicable laws and regulations, and to obtain any necessary permissions before using the code or information.
@@ -37,9 +33,19 @@ Checks if the move is a capture, a protection for a piece or an empty field.
 ### 4. Highlight the move
 Highlights the move depending on what it does.
 
-## Usage
+## Installation
 
-### Install
+### Chrome Extension
+1. Download the [chess-helper.zip](https://github.com/Lyzev/chess-helper/releases/latest) file
+2. Unzip the file
+3. Open Chrome
+4. Go to `chrome://extensions/`
+5. Enable `Developer mode` in the top right corner
+6. Press the button `Load unpacked` in the top left corner
+7. Choose the unzipped folder
+8. Have fun!
+
+### Tampermonkey
 1. Download the [chess-helper.js](https://github.com/Lyzev/chess-helper/releases/latest) file
 2. Open Tampermonkey in your Browser
 3. Go to the Utilities tab
@@ -47,6 +53,9 @@ Highlights the move depending on what it does.
 5. Choose the downloaded [chess-helper.js](https://github.com/Lyzev/chess-helper/releases/latest) file
 6. Click on 'Install' in the tab that has opened
 7. Have fun!
+
+## Showcase
+<img height="500" src="assets/img/preview.png" alt="Preview of chess helper">
 
 ## Bugs and Suggestions
 

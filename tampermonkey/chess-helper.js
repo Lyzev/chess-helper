@@ -1,26 +1,21 @@
 // ==UserScript==
 // @name         ChessHelper
 // @namespace    https://lyzev.github.io/
-// @version      0.0.1
-// @description  A utility addon for chess.com!
+// @version      0.0.2
+// @description  A utility script for chess.com that highlights the fields that are attacked or defended by pieces.
 // @author       Lyzev
 // @match        https://www.chess.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=chess.com
+// @icon         https://github.com/Lyzev/chess-helper/raw/master/tampermonkey/img/icon-128x128.png
 // @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant        GM_getValue
 // @grant        GM_setValue
 // ==/UserScript==
 
-const css = '.highlight { z-index: -2; }',
-    head = document.getElementsByTagName('head')[0],
-    style = document.createElement('style');
-style.type = 'text/css';
-if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-} else {
-    style.appendChild(document.createTextNode(css));
-}
-head.appendChild(style);
+const css = ".highlight { z-index: -2; }",
+    head = document.head,
+    style = document.createElement("style")
+style.innerHTML = css
+head.appendChild(style)
 
 GM_config.init(
     {
@@ -166,9 +161,9 @@ function isValid(x, y) {
 let lastPieces = []
 
 function renderColor(board, color, invertColor, invert) {
-    const emptyColor = invertColor == 1 ? (GM_config.get("FieldsDefendedByAllies") ? "#90FC03" : "transparent") : (GM_config.get("FieldsDefendedByEnemies") ? "#FF843D" : "transparent")
-    const allyColor = invertColor == 1 ? (GM_config.get("DefendendAllies") ? "#FFE045" : "transparent") : (GM_config.get("DefendendEnemies") ? "#962727" : "transparent")
-    const enemyColor = invertColor == 1 ? (GM_config.get("AttackedEnemies") ? "#4D9100" : "transparent") : (GM_config.get("AttackedAllies") ? "#A67100" : "transparent")
+    const emptyColor = invertColor === 1 ? (GM_config.get("FieldsDefendedByAllies") ? "#90FC03" : "transparent") : (GM_config.get("FieldsDefendedByEnemies") ? "#FF843D" : "transparent")
+    const allyColor = invertColor === 1 ? (GM_config.get("DefendendAllies") ? "#FFE045" : "transparent") : (GM_config.get("DefendendEnemies") ? "#962727" : "transparent")
+    const enemyColor = invertColor === 1 ? (GM_config.get("AttackedEnemies") ? "#4D9100" : "transparent") : (GM_config.get("AttackedAllies") ? "#A67100" : "transparent")
 
     pieces_name.forEach(piece_name => {
         const pieces = Array.from(board.getElementsByClassName(color + piece_name))
@@ -176,7 +171,7 @@ function renderColor(board, color, invertColor, invert) {
             const pos = []
             piece.classList.forEach(class_name => {
                 if (class_name.startsWith("square")) {
-                    lastPieces.push(class_name);
+                    lastPieces.push(class_name)
                     const tmpPos = class_name.substring(7).split("")
                     pos.push(parseInt(tmpPos[0]))
                     pos.push(parseInt(tmpPos[1]))
@@ -185,17 +180,17 @@ function renderColor(board, color, invertColor, invert) {
                     let i = 1
                     switch (piece_name) {
                         case "p": // -------- PAWN --------
-                            x = pos[0] - 1;
-                            y = pos[1] + 1 * invert;
+                            x = pos[0] - 1
+                            y = pos[1] + 1 * invert
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
-                            x = pos[0] + 1;
-                            y = pos[1] + 1 * invert;
+                            x = pos[0] + 1
+                            y = pos[1] + 1 * invert
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
-                            break;
+                            break
                         case "r": // -------- ROOK --------
                             while (isValid(pos[0] - i, pos[1]) && !setField(board, (pos[0] - i) + "" + pos[1], color, emptyColor, allyColor, enemyColor)) {
                                 i++
@@ -213,52 +208,52 @@ function renderColor(board, color, invertColor, invert) {
                             while (isValid(pos[0], pos[1] + i) && !setField(board, pos[0] + "" + (pos[1] + i), color, emptyColor, allyColor, enemyColor)) {
                                 i++
                             }
-                            break;
+                            break
                         case "n": // -------- KNIGHT --------
-                            x = pos[0] - 1;
-                            y = pos[1] + 2;
+                            x = pos[0] - 1
+                            y = pos[1] + 2
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
-                            x = pos[0] + 1;
-                            y = pos[1] + 2;
-                            if (isValid(x, y)) {
-                                setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
-                            }
-
-                            x = pos[0] - 1;
-                            y = pos[1] - 2;
-                            if (isValid(x, y)) {
-                                setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
-                            }
-                            x = pos[0] + 1;
-                            y = pos[1] - 2;
+                            x = pos[0] + 1
+                            y = pos[1] + 2
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
 
-                            x = pos[0] + 2;
-                            y = pos[1] - 1;
+                            x = pos[0] - 1
+                            y = pos[1] - 2
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
-                            x = pos[0] + 2;
-                            y = pos[1] + 1;
+                            x = pos[0] + 1
+                            y = pos[1] - 2
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
 
-                            x = pos[0] - 2;
-                            y = pos[1] - 1;
+                            x = pos[0] + 2
+                            y = pos[1] - 1
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
-                            x = pos[0] - 2;
-                            y = pos[1] + 1;
+                            x = pos[0] + 2
+                            y = pos[1] + 1
                             if (isValid(x, y)) {
                                 setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
                             }
-                            break;
+
+                            x = pos[0] - 2
+                            y = pos[1] - 1
+                            if (isValid(x, y)) {
+                                setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
+                            }
+                            x = pos[0] - 2
+                            y = pos[1] + 1
+                            if (isValid(x, y)) {
+                                setField(board, x + "" + y, color, emptyColor, allyColor, enemyColor)
+                            }
+                            break
                         case "b": // -------- BISHOP --------
                             while (isValid(pos[0] - i, pos[1] - i) && !setField(board, (pos[0] - i) + "" + (pos[1] - i), color, emptyColor, allyColor, enemyColor)) {
                                 i++
@@ -278,7 +273,7 @@ function renderColor(board, color, invertColor, invert) {
                             while (isValid(pos[0] - i, pos[1] + i) && !setField(board, (pos[0] - i) + "" + (pos[1] + i), color, emptyColor, allyColor, enemyColor)) {
                                 i++
                             }
-                            break;
+                            break
                         case "q": // -------- QUEEN --------
                             while (isValid(pos[0] - i, pos[1] - i) && !setField(board, (pos[0] - i) + "" + (pos[1] - i), color, emptyColor, allyColor, enemyColor)) {
                                 i++
@@ -316,7 +311,7 @@ function renderColor(board, color, invertColor, invert) {
                             while (isValid(pos[0], pos[1] + i) && !setField(board, pos[0] + "" + (pos[1] + i), color, emptyColor, allyColor, enemyColor)) {
                                 i++
                             }
-                            break;
+                            break
                         case "k": // -------- KING --------
                             for (x = -1; x <= 1; x += 2) {
                                 for (y = -1; y <= 1; y += 2) {
@@ -333,7 +328,7 @@ function renderColor(board, color, invertColor, invert) {
                                     setField(board, pos[0] + "" + (pos[1] + i), color, emptyColor, allyColor, enemyColor)
                                 }
                             }
-                            break;
+                            break
                     }
                 }
             })
@@ -361,7 +356,7 @@ function shouldNotRender(board) {
 }
 
 function render(board) {
-    if (lastPieces.length == 0 || !shouldNotRender(board)) {
+    if (lastPieces.length === 0 || !shouldNotRender(board)) {
         lastPieces = []
         getFields(board).forEach(field => field.remove())
         renderColor(board, "w", board.classList.contains("flipped") ? -1 : 1, 1)
