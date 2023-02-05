@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chess Helper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A utility script for chess.com that highlights the fields that are attacked or defended by pieces.",
   "icons": {
     "16": "img/icon-16x16.png",
@@ -28,6 +28,8 @@
     }
   ],
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab",
+    "scripting"
   ]
 }

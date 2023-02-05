@@ -14,5 +14,26 @@ settings.forEach(setting => {
     toggle.addEventListener("change", event => {
         const isChecked = event.target.checked
         chrome.storage.local.set({[setting[0]]: isChecked})
+
+        chrome.tabs.query({
+            active: true,
+            currentWindow: true
+        }, function(tabs) {
+            chrome.scripting.executeScript({
+                target: {
+                    tabId: tabs[0].id
+                },
+                function: sendData,
+            });
+        });
+
+        const sendData = async () => {
+            const boards = Array.from(document.getElementsByTagName("chess-board"))
+            if (boards.length > 0) {
+                boards.forEach(board => {
+                    render(board)
+                })
+            }
+        }
     })
 })

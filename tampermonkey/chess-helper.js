@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ChessHelper
 // @namespace    https://lyzev.github.io/
-// @version      0.0.2
+// @version      0.0.3
 // @description  A utility script for chess.com that highlights the fields that are attacked or defended by pieces.
 // @author       Lyzev
 // @match        https://www.chess.com/*

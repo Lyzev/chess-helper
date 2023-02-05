@@ -1,6 +1,4 @@
-const css = ".highlight { z-index: -2; }",
-    head = document.head,
-    style = document.createElement("style")
+const css = ".highlight { z-index: -2; }", head = document.head, style = document.createElement("style")
 style.innerHTML = css
 head.appendChild(style)
 
@@ -259,19 +257,19 @@ function shouldNotRender(board) {
 }
 
 function render(board) {
-    if (lastPieces.length === 0 || !shouldNotRender(board)) {
-        lastPieces = []
-        getFields(board).forEach(field => field.remove())
-        renderColor(board, "w", board.classList.contains("flipped") ? -1 : 1, 1)
-        renderColor(board, "b", board.classList.contains("flipped") ? 1 : -1, -1)
-    }
+    lastPieces = []
+    getFields(board).forEach(field => field.remove())
+    renderColor(board, "w", board.classList.contains("flipped") ? -1 : 1, 1)
+    renderColor(board, "b", board.classList.contains("flipped") ? 1 : -1, -1)
 }
 
 setInterval(() => {
     const boards = Array.from(document.getElementsByTagName("chess-board"))
     if (boards.length > 0) {
         boards.forEach(board => {
-            render(board)
+            if (lastPieces.length === 0 || !shouldNotRender(board)) {
+                render(board)
+            }
         })
     }
 }, 500)
