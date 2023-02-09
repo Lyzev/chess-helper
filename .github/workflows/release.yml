@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION: ${{ inputs.version }}
+  VERSION: 0.0.4
 
 jobs:
   run_batch_script:
@@ -17,9 +17,3 @@ jobs:
       - name: Run Batch Script
         run: | 
           echo "Running batch script with version: $VERSION"
-
-inputs:
-  version:
-    description: The version number to use in the script
-    required: true
-    default: "1.0.0"
