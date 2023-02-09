@@ -36,7 +36,7 @@ jobs:
       - name: Create a new release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: CHANGELOG.md.md
+          body_path: CHANGELOG.md
           token: ${{ secrets.PERSONAL_TOKEN }}
           tag_name: v${{ env.VERSION }}
           files: ./release/*
