@@ -3,7 +3,7 @@ name: Create Release
 on:
   workflow_dispatch:
     inputs:
-      message:
+      version:
         required: true
 
 jobs:
@@ -14,11 +14,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Release Script
         run: |
-          echo "Running shell script with version: ${{ github.event.inputs.message }}"
+          echo "Running shell script with version: ${{ github.event.inputs.version }}"
           mkdir build
           
-          sed -i "s/\${version}/${{ github.event.inputs.message }}/" ./chrome/manifest.json
-          sed -i "s/\${version}/${{ github.event.inputs.message }}/" ./tampermonkey/chess-helper.js
+          sed -i "s/\${version}/${{ github.event.inputs.version }}/" ./chrome/manifest.json
+          sed -i "s/\${version}/${{ github.event.inputs.version }}/" ./tampermonkey/chess-helper.js
           
           cat ./chrome/manifest.json
           cat ./tampermonkey/chess-helper.js
@@ -38,5 +38,5 @@ jobs:
         with:
           body_path: CHANGELOG.md
           token: ${{ secrets.PERSONAL_TOKEN }}
-          tag_name: v${{ github.event.inputs.message }}
+          tag_name: v${{ github.event.inputs.version }}
           files: ./release
