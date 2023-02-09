@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
+        description: Revised edition or updated version of the repository to be published.
         required: true
 
 jobs:
