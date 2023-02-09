@@ -39,4 +39,4 @@ jobs:
           body_path: CHANGELOG.md
           token: ${{ secrets.PERSONAL_TOKEN }}
           tag_name: v${{ env.VERSION }}
-          files: ./release/*
+          files: ./release
