@@ -4,16 +4,33 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION: 0.0.4
+  VERSION: '0.0.4'
 
 jobs:
   run_batch_script:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Run Release Script
+        run: |
+          echo "Running shell script with version: $VERSION"
+          mkdir release
+          
+          sed -i "s/\${version}/$VERSION/" ./chrome/manifest.json
+          sed -i "s/\${version}/$VERSION/" ./tampermonkey/chess-helper.js
+          
+          cat ./chrome/manifest.json
+          cat ./tampermonkey/chess-helper.js
+          
+          zip -r ./release/chess-helper.zip ./chrome
+          cp ./tampermonkey/chess-helper.js ./release/chess-helper.js
+          for asset in ./release/*; do
+            md5sum $asset >> ./release/$asset.md5
+            sha1sum $asset >> ./release/$asset.sha1
+            sha256sum $asset >> ./release/$asset.sha256
+            sha512sum $asset >> ./release/$asset.sha512
+          done
+          
+          ls -l ./release
 
-      - name: Run Batch Script
-        run: | 
-          echo "Running batch script with version: $VERSION"
