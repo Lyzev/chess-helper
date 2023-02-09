@@ -1,42 +1,24 @@
-name: Generate Checksums
+name: Create Release
 
 on:
-  release:
-    types: [ published ]
+  workflow_dispatch:
+
+env:
+  VERSION: ${{ inputs.version }}
 
 jobs:
-  generate-checksums:
-    runs-on: ubuntu-latest
+  run_batch_script:
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Generate Checksums
-        run: |
-          mkdir -p checksums
-          RELEASE_DIR=release
-          if [ -d "$RELEASE_DIR" ] && [ "$(ls -A $RELEASE_DIR)" ]; then
-            for asset in $RELEASE_DIR/*; do
-              sha256sum $asset >> $GITHUB_WORKSPACE/checksums/checksums.txt
-            done
-          else
-            echo "No files found in release directory"
-            exit 1
-          fi
+      - name: Run Batch Script
+        run: echo "Running batch script with version: $VERSION"
 
-      - name: Get Release URL
-        id: get_release
-        uses: bruceadams/get-release@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-
-      - name: Upload Checksums
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: checksums/checksums.txt
-          asset_name: checksums.txt
-          asset_content_type: text/plain
+inputs:
+  version:
+    description: The version number to use in the script
+    required: true
+    default: "1.0.0"
