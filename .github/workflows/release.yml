@@ -40,4 +40,14 @@ jobs:
           body_path: CHANGELOG.md
           token: ${{ secrets.PERSONAL_TOKEN }}
           tag_name: v${{ github.event.inputs.version }}
-          files: ./release
+          files: |
+            ./build/chess-helper.zip
+            ./build/chess-helper.zip.md5
+            ./build/chess-helper.zip.sha1
+            ./build/chess-helper.zip.sha256
+            ./build/chess-helper.zip.sha512
+            ./build/chess-helper.js
+            ./build/chess-helper.js.md5
+            ./build/chess-helper.js.sha1
+            ./build/chess-helper.js.sha256
+            ./build/chess-helper.js.sha512
