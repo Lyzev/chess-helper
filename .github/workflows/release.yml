@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Batch Script
-        run: echo "Running batch script with version: $VERSION"
+        run: | 
+          echo "Running batch script with version: $VERSION"
 
 inputs:
   version:
