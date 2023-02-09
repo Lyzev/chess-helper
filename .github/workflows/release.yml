@@ -7,7 +7,7 @@ env:
   VERSION: '0.0.4'
 
 jobs:
-  run_batch_script:
+  run_release_script:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,10 +26,10 @@ jobs:
           zip -r ./release/chess-helper.zip ./chrome
           cp ./tampermonkey/chess-helper.js ./release/chess-helper.js
           for asset in ./release/*; do
-            md5sum $asset >> ./release/$asset.md5
-            sha1sum $asset >> ./release/$asset.sha1
-            sha256sum $asset >> ./release/$asset.sha256
-            sha512sum $asset >> ./release/$asset.sha512
+            md5sum $asset >> $asset.md5
+            sha1sum $asset >> $asset.sha1
+            sha256sum $asset >> $asset.sha256
+            sha512sum $asset >> $asset.sha512
           done
           
           ls -l ./release
