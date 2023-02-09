@@ -4,7 +4,7 @@ settings.forEach(setting => {
     const toggle = document.querySelector(`#${setting[0]}`)
 
     chrome.storage.local.get([setting[0]], result => {
-        if (result[setting[0]]) {
+        if (result[setting[0]] !== undefined) {
             toggle.checked = result[setting[0]]
         } else {
             toggle.checked = setting[1]
